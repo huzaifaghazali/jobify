@@ -4,12 +4,11 @@ import Wrapper from '../assets/wrappers/Navbar';
 import { useDashboardContext } from '../pages/DashboardLayout';
 
 export default function Navbar() {
-
-   const { toggleSidebar } = useDashboardContext();
+  const { toggleSidebar } = useDashboardContext();
   return (
     <Wrapper>
       <div className='nav-center'>
-        <button className='toggle-btn' onClick={toggleSidebar}>
+        <button type='button' className='toggle-btn' onClick={toggleSidebar}>
           <FaAlignLeft />
         </button>
         <div>
