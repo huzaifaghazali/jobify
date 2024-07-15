@@ -4,13 +4,14 @@ import { useDashboardContext } from '../pages/DashboardLayout';
 import Wrapper from '../assets/wrappers/BigSidebar';
 
 export default function BigSidebar() {
-  const { showSideBar } = useDashboardContext();
+  const { showSidebar } = useDashboardContext();
+  console.log(showSidebar);
 
   return (
     <Wrapper>
       <div
         className={
-          showSideBar ? 'sidebar-container ' : 'sidebar-container show-sidebar'
+          showSidebar ? 'sidebar-container ' : 'sidebar-container show-sidebar'
         }
       >
         <div className='content'>
