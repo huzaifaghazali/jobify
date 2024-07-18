@@ -9,7 +9,7 @@ import mongoose from 'mongoose';
 import jobRouter from './routes/jobRouter.js';
 
 // middleware
-import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
+import errorHandlerMiddleware from './middlewares/errorHandlerMiddleware.js';
 
 const app = express();
 
