@@ -50,10 +50,10 @@ export const validateRegisterInput = withValidationErrors([
     .withMessage('Email is required')
     .isEmail()
     .withMessage('Invalid email format')
-    .custom(async (value) => {
+    .custom(async (email) => {
       const user = await User.findOne({ email });
       if (user) {
-        throw new BadRequestError('Email already in use');
+        throw new BadRequestError('Email already exists');
       }
     }),
   body('password')
