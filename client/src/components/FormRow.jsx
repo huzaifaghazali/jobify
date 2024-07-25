@@ -7,6 +7,7 @@ function FormRow({ type, name, labelText, defaultValue = '' }) {
       <input
         type={type}
         id={name}
+        name={name}
         className='form-input'
         defaultValue={defaultValue}
         required
