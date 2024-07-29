@@ -5,7 +5,6 @@ import Wrapper from '../assets/wrappers/BigSidebar';
 
 export default function BigSidebar() {
   const { showSidebar } = useDashboardContext();
-  console.log(showSidebar);
 
   return (
     <Wrapper>
