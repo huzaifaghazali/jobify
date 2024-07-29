@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
 import customFetch from '../utils/customFetch';
 import Wrapper from '../assets/wrappers/StatsContainer';
+import StatItem from '../components/StatItem';
 
 export const loader = async () => {
   try {
@@ -20,7 +21,20 @@ const Admin = () => {
 
   return (
     <Wrapper>
-      <h2>Admin Page</h2>
+       <StatItem
+        title='current users'
+        count={users}
+        color='#e9b949'
+        bcg='#fcefc7'
+        icon={<FaSuitcaseRolling />}
+      />
+      <StatItem
+        title='total jobs'
+        count={jobs}
+        color='#647acb'
+        bcg='#e0e8f9'
+        icon={<FaCalendarCheck />}
+      />
     </Wrapper>
   );
 };
