@@ -6,44 +6,55 @@ import Job from '../models/JobModel.js';
 export const getAllJobs = async (req, res) => {
   const { search, jobStatus, jobType, sort } = req.query;
 
+  // Create an object to hold the query criteria
   const queryObject = {
-    createdBy: req.user.userId,
+    createdBy: req.user.userId, // Only fetch jobs created by the authenticated user
   };
 
+  // If there is a search query, add it to the query criteria
   if (search) {
     queryObject.$or = [
-      { position: { $regex: search, $options: 'i' } },
-      { company: { $regex: search, $options: 'i' } },
+      { position: { $regex: search, $options: 'i' } }, // Search for jobs with matching position
+      { company: { $regex: search, $options: 'i' } }, // Search for jobs with matching company
     ];
   }
 
+  // If a job status is provided, add it to the query criteria
   if (jobStatus && jobStatus !== 'all') {
     queryObject.jobStatus = jobStatus;
   }
 
+  // If a job type is provided, add it to the query criteria
   if (jobType && jobType !== 'all') {
     queryObject.jobType = jobType;
   }
 
+  // Define the available sort options
   const sortOptions = {
-    newest: '-createdAt',
-    oldest: 'createdAt',
-    'a-z': 'position',
-    'z-a': '-position',
+    newest: '-createdAt', // Sort by creation date in descending order
+    oldest: 'createdAt', // Sort by creation date in ascending order
+    'a-z': 'position', // Sort by position in ascending order
+    'z-a': '-position', // Sort by position in descending order
   };
 
+  // Determine the sorting criteria based on the provided sort parameter
   const sortKey = sortOptions[sort] || sortOptions.newest;
 
-  // setup pagination
-  const page = Number(req.query.page) || 1;
-  const limit = Number(req.query.limit) || 10;
-  const skip = (page - 1) * limit;
+  // Setup pagination
+  const page = Number(req.query.page) || 1; // Get the page number from the query parameters, default to 1
+  const limit = Number(req.query.limit) || 10; // Get the number of jobs per page from the query parameters, default to 10
+  const skip = (page - 1) * limit; // Calculate the number of jobs to skip based on the page number and limit
 
+  // Fetch the jobs from the database based on the query criteria, sorting, and pagination
   const jobs = await Job.find(queryObject)
     .sort(sortKey)
     .skip(skip)
     .limit(limit);
+
+  // Count the total number of jobs matching the query criteria
   const totalJobs = await Job.countDocuments(queryObject);
+
+  // Calculate the number of pages based on the total number of jobs and the limit per page
   const numOfPages = Math.ceil(totalJobs / limit);
 
   res
