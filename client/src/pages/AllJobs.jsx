@@ -9,9 +9,21 @@ const AllJobsContext = createContext();
 
 export const loader = async ({ request }) => {
   try {
-    const { data } = await customFetch('/jobs');
+    // Create an object to store the search parameters from the request URL
+    const params = Object.fromEntries([
+      ...new URL(request.url).searchParams.entries(),
+    ]);
+
+    // Use the customFetch function to make a GET request to the '/jobs' endpoint
+    // with the search parameters as the request parameters
+    const { data } = await customFetch('/jobs', {
+      params,
+    });
+
+    // Return an object containing the fetched job data and the search parameters
     return {
-      data,
+      data, // The fetched job data
+      searchValues: { ...params }, // The search parameters
     };
   } catch (error) {
     toast.error(error?.response?.data?.msg);
@@ -20,10 +32,10 @@ export const loader = async ({ request }) => {
 };
 
 const AllJobs = () => {
-  const { data } = useLoaderData();
+  const { data, searchValues } = useLoaderData();
 
   return (
-    <AllJobsContext.Provider value={{ data }}>
+    <AllJobsContext.Provider value={{ data, searchValues }}>
       <SearchContainer />
       <JobsContainer />
     </AllJobsContext.Provider>
