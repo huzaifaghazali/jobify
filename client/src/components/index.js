@@ -6,6 +6,7 @@ export { default as SmallSidebar } from './SmallSidebar';
 export { default as Navbar } from './Navbar';
 export { default as NavLinks } from './NavLinks';
 export { default as LogoutContainer } from './LogoutContainer';
-export { default as SubmitBtn } from  './SubmitBtn';
+export { default as SubmitBtn } from './SubmitBtn';
 export { default as StatsContainer } from './StatsContainer';
 export { default as ChartsContainer } from './ChartsContainer';
+export { default as Loading } from './Loading';
