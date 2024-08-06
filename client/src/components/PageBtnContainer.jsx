@@ -1,5 +1,5 @@
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi';
-import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAllJobsContext } from '../pages/AllJobs';
 import Wrapper from '../assets/wrappers/PageBtnContainer';
 
@@ -9,7 +9,6 @@ const PageBtnContainer = () => {
   } = useAllJobsContext();
   const { search, pathname } = useLocation();
   const navigate = useNavigate();
-  const pages = Array.from({ length: numOfPages }, (_, index) => index + 1);
 
   const handlePageChange = (pageNumber) => {
     const searchParams = new URLSearchParams(search);
