@@ -81,7 +81,11 @@ const router = createBrowserRouter([
             loader: allJobsLoader,
             errorElement: <ErrorElement />,
           },
-          { path: 'profile', element: <Profile />, action: profileAction },
+          {
+            path: 'profile',
+            element: <Profile />,
+            action: profileAction(queryClient),
+          },
           { path: 'admin', element: <Admin />, loader: adminLoader },
           {
             path: 'edit-job/:id',
