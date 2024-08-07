@@ -68,7 +68,11 @@ const router = createBrowserRouter([
         element: <DashboardLayout queryClient={queryClient} />,
         loader: dashboardLoader(queryClient),
         children: [
-          { index: true, element: <AddJob />, action: addJobAction },
+          {
+            index: true,
+            element: <AddJob />,
+            action: addJobAction(queryClient),
+          },
           {
             path: 'stats',
             element: <Stats />,
