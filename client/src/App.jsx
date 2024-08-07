@@ -97,7 +97,7 @@ const router = createBrowserRouter([
             loader: editJobLoader(queryClient),
             action: editJobAction(queryClient),
           },
-          { path: 'delete-job/:id', action: deleteJobAction },
+          { path: 'delete-job/:id', action: deleteJobAction(queryClient) },
         ],
       },
     ],
