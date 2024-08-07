@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from 'react';
+import { useState, createContext, useContext, useEffect } from 'react';
 import { Outlet, redirect, useNavigate, useNavigation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { BigSidebar, SmallSidebar, Navbar, Loading } from '../components';
@@ -33,6 +33,7 @@ const DashboardLayout = ({ queryClient }) => {
 
   const [showSidebar, setShowSidebar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme());
+  const [isAuthError, setIsAuthError] = useState(false);
 
   const toggleDarkTheme = () => {
     const newDarkTheme = !isDarkTheme;
@@ -51,6 +52,39 @@ const DashboardLayout = ({ queryClient }) => {
     queryClient.invalidateQueries();
     toast.success('Logging out...');
   };
+
+  // This is an interceptor function that will be called whenever a response is
+  // received from the server. It checks if the response has a status of 401 (Unauthorized),
+  // and if so, it sets the isAuthError state to true.
+  // If the response does not have a 401 status, it simply returns the response.
+  customFetch.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      // Check if the response has a status of 401 (Unauthorized)
+      if (error?.response?.status === 401) {
+        // If so, set the isAuthError state to true
+        setIsAuthError(true);
+      }
+      // Return a rejected promise with the error
+      return Promise.reject(error);
+    }
+  );
+
+  // This useEffect hook is triggered whenever the isAuthError state changes.
+  // If the isAuthError state is true, it means that the user has tried to access
+  // a protected resource and was unauthorized. In this case, the logoutUser function
+  // is called to log the user out.
+  useEffect(() => {
+    // Check if the isAuthError state is true
+    if (!isAuthError) {
+      // If not, do nothing
+      return;
+    }
+
+    logoutUser();
+  }, [isAuthError]);
 
   return (
     <DashboardContext.Provider
