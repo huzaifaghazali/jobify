@@ -13,6 +13,24 @@ Jobify is a full stack job portal application where users can create accounts an
 - [Scripts](#scripts)
 
 ## Pictures
+  
+  ![jb1](https://github.com/user-attachments/assets/91dd11ea-f697-4c83-86a1-31f75b64cf1e)
+
+  ![jb1a](https://github.com/user-attachments/assets/4a6a00a6-0339-41b5-8673-284df6afdfb1)
+
+  ![jb2](https://github.com/user-attachments/assets/fd84f788-5da1-4529-b21a-e1a4bbe90f74)
+
+  ![jb3](https://github.com/user-attachments/assets/ca699fec-8839-4381-a097-38da1a9a9bb0)
+
+  ![jb4](https://github.com/user-attachments/assets/d214a0b6-415c-4edf-a006-f6219f6d926b)
+
+  ![jb5](https://github.com/user-attachments/assets/0153d30c-8487-4d0a-bf2a-946a645dd544)
+
+  ![jb6](https://github.com/user-attachments/assets/74940f98-a04e-4b7a-b87f-9a5dedd0bd39)
+
+  ![jb7](https://github.com/user-attachments/assets/329285a4-158c-415b-958a-0b87449150a9)
+
+  ![jb8](https://github.com/user-attachments/assets/ce3fb3a7-9b9b-4dc4-8143-38942b241420)
 
 ## Features
 
